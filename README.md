@@ -2,6 +2,9 @@
 This module is a simple Node script to pull down module READMEs from any public repository
 using the GitHub API.  The primary use case is for use with Jekyll to include documentation from external but related repositories.
 
+**NOTE**: This script accesses GitHub APIs without authorization.  Since it uses only
+"read" operations, no authorization is required; however, for unauthenticated requests, GitHub API rate limit is 60 requests per hour. For more information, see [https://developer.github.com/v3/#rate-limiting](https://developer.github.com/v3/#rate-limiting).
+
 ## Install dependencies
 
 ```
@@ -44,9 +47,6 @@ For example:
  ]
 }
 ```
-
-**NOTE**: This script accesses GitHub APIs without authorization.  Since it uses only
-"read" operations, no authorization is required; however, for unauthenticated requests, GitHub API rate limit is 60 requests per hour. For more information, see [https://developer.github.com/v3/#rate-limiting](https://developer.github.com/v3/#rate-limiting).
 
 ## TODO
 
