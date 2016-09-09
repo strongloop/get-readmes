@@ -1,0 +1,21 @@
+{
+  "repos" : [
+  { "org": "expressjs", "repoName":  "body-parser"},
+  { "org": "expressjs", "repoName":  "compression"},
+  { "org": "expressjs", "repoName":  "connect-rid"},
+  { "org": "expressjs", "repoName":  "cookie-parser"},
+  { "org": "expressjs", "repoName":  "cookie-session"},
+  { "org": "expressjs", "repoName":  "cors"},
+  { "org": "expressjs", "repoName":  "csurf"},
+  { "org": "expressjs", "repoName":  "errorhandler"},
+  { "org": "expressjs", "repoName":  "method-override"},
+  { "org": "expressjs", "repoName":  "morgan"},
+  { "org": "expressjs", "repoName":  "multer"},
+  { "org": "expressjs", "repoName":  "response-time"},
+  { "org": "expressjs", "repoName":  "serve-favicon"},
+  { "org": "expressjs", "repoName":  "serve-index"},
+  { "org": "expressjs", "repoName":  "serve-static"},
+  { "org": "expressjs", "repoName":  "session"},
+  { "org": "expressjs", "repoName":  "timeout"},
+  { "org": "expressjs", "repoName":  "vhost"} ]
+}

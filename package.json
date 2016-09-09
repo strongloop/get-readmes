@@ -1,0 +1,16 @@
+{
+  "name": "getreadmes",
+  "version": "1.0.0",
+  "description": "Get README files from GitHub",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "C. Rand McKinney",
+  "license": "MIT",
+  "dependencies": {
+    "command-line-args": "^3.0.1",
+    "github": "^2.5.1",
+    "minimist": "^1.2.0"
+  }
+}
