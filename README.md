@@ -51,3 +51,7 @@ For example:
 ## TODO
 
 Add a way to use OAuth2 tokens to avoid the rate limit.  See https://developer.github.com/v3/oauth/
+
+## License
+
+[MIT](LICENSE)
