@@ -1,22 +1,17 @@
 #!/usr/bin/env node
 var fs = require('fs');
-var argv = require('minimist')(process.argv.slice(2));
+var path = require('path');
 require('./lib.js');
 
-// Defaults
-var VERBOSE = false;
-var REPOS = '.';
-var OUTPATH = './readmes';
+var defaults = {
+  repos : '.',
+  out : 'readmes'
+};
+var argv = require('minimist')(process.argv.slice(2), {default : defaults});
 
-// Process command-line options
-if (argv.repos ) {
-  REPOS = argv.repos;
-}
-REPOS = REPOS + '/repos.json';
-
-if (argv.out ) {
-  OUTPATH = argv.out;
-}
+//make paths relative to CWD unless they're absolute paths
+var REPOS = path.resolve(process.cwd(), argv.repos, 'repos.json');
+var OUTPATH = path.resolve(process.cwd(), argv.out);
 
 // Create output dir if it does not exist
 if (!fileOrDirExists(OUTPATH, true)) {
