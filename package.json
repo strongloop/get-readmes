@@ -1,13 +1,13 @@
 {
   "name": "getreadmes",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Get README files from GitHub",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "bin" : {
-    "get-readmes" : "get-readmes.js" 
+  "bin": {
+    "get-readmes": "get-readmes.js"
   },
   "author": "C. Rand McKinney",
   "license": "MIT",
