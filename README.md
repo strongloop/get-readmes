@@ -8,8 +8,8 @@ using the GitHub API.  The primary use case is for use with Jekyll to include do
 ## Install dependencies
 
 ```
-cd get-readmes
-npm install
+$ cd get-readmes
+$ npm install
 ```
 
 This module uses the Node GitHub API; see [http://mikedeboer.github.io/node-github](http://mikedeboer.github.io/node-github).
@@ -20,7 +20,7 @@ This module uses the Node GitHub API; see [http://mikedeboer.github.io/node-gith
 
 1. Run the script:
 ```
-node get-readmes [--out=<path-to-output-dir>] [--repos=<path-to-JSON-file>]
+$ node get-readmes [--out=<path-to-output-dir>] [--repos=<path-to-JSON-file>]
 ```
 
 Options:
