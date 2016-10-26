@@ -47,7 +47,7 @@ writeOutReadme = function(options, readmeFile) {
       console.log(err);
 
     } else {
-      //console.log("Getting README for " + JSON.stringify(options) );
+      console.log("Writing " + readmeFile );
       //var file = path + "/" + options.repo + ".md"
       var s = new Buffer(res.content, 'base64').toString();
       //var fs = require('fs');
