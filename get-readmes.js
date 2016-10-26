@@ -4,13 +4,13 @@ var path = require('path');
 require('./lib.js');
 
 var defaults = {
-  repos : '.',
+  repos : './repos.json',
   out : 'readmes'
 };
 var argv = require('minimist')(process.argv.slice(2), {default : defaults});
 
 //make paths relative to CWD unless they're absolute paths
-var REPOS = path.resolve(process.cwd(), argv.repos, 'repos.json');
+var REPOS = path.resolve(process.cwd(), argv.repos);
 var OUTPATH = path.resolve(process.cwd(), argv.out);
 
 // Create output dir if it does not exist

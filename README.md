@@ -27,7 +27,7 @@ Options:
 
 | Option&nbsp;&nbsp;&nbsp;&nbsp; | Description | Default value |
 |-----------|---------|----------|
-| `--repos`| Relative or absolute path to the JSON file containing list of repos.  Specify relative directory path _only_, not the file name, which is always `repos.json`.  | `./repos.json` |
+| `--repos`| Relative or absolute path to the JSON file containing list of repos.  Specify relative directory path _only_, and the file name. | `./repos.json` |
 |`--out` | Relative or absolute path to directory in which to save README files.  Tool will create the directory if it does not exist. Files are named `<repo-name>.md`. | `./readmes/` |
 
 ### Format of the repos.json file
