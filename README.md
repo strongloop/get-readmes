@@ -2,6 +2,8 @@
 This module is a simple Node script to pull down module READMEs from any public repository
 using the GitHub API.  The primary use case is for use with Jekyll to include documentation from external but related repositories.
 
+The script will get the README file for the **latest release** tagged in a repository.  If it can't find a tagged release, then it falls back to the master branch.  You can also specify a particular branch.
+
 **NOTE**: This script accesses GitHub APIs without authorization.  Since it uses only
 "read" operations, no authorization is required; however, for unauthenticated requests, GitHub API rate limit is 60 requests per hour. For more information, see [https://developer.github.com/v3/#rate-limiting](https://developer.github.com/v3/#rate-limiting).
 
