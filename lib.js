@@ -1,72 +1,78 @@
-var GitHubApi = require("github");
+var GitHubApi = require('@octokit/rest');
 var fs = require('fs');
-var github = new GitHubApi({
+
+var github = (exports.github = new GitHubApi({
   debug: false,
-  headers: { "Accept-Charset": "ISO-8859-1,utf-8"}
-});
+  headers: { 'Accept-Charset': 'ISO-8859-1,utf-8' }
+}));
 
 /*
   Write out content of README.md file for latest release of org/module to path.
 */
-processReadme = function(targetRepo, path) {
+exports.processReadme = function(targetRepo, path) {
   var options = {};
-  var fileName = path + "/" + targetRepo.repoName + ".md";
-  options.user = targetRepo.org;
+  var fileName = path + '/' + targetRepo.repoName + '.md';
+  options.owner = targetRepo.org;
   options.repo = targetRepo.repoName;
 
-  if (targetRepo.branch) {     // get readme for branch, if specified
+  if (targetRepo.branch) {
+    // get readme for branch, if specified
     options.ref = targetRepo.branch;
-    path = path + "/" + targetRepo.repoName + "-" + targetRepo.branch + ".md";
+    path = path + '/' + targetRepo.repoName + '-' + targetRepo.branch + '.md';
     writeOutReadme(options, path);
-
   } else {
-    github.repos.getLatestRelease({ user: targetRepo.org, repo: targetRepo.repoName }, function(err, res) {
-      if(err) { // Use master release
-        //console.log("For " + targetRepo.org + "/" + targetRepo.repoName + " -- No latest release ");
-
-      } else { // Use latest tagged release if it exists
-        //console.log("For " + targetRepo.org + "/" + targetRepo.repoName  + " latest release is " + res.tag_name );
-        options.ref = res.tag_name;
-
+    github.repos.getLatestRelease(
+      { owner: targetRepo.org, repo: targetRepo.repoName },
+      function(err, res) {
+        if (err) {
+          // Use master release
+          //console.log('For ' + targetRepo.org + '/' + targetRepo.repoName +
+          // ' -- No latest release ');
+        } else {
+          // Use latest tagged release if it exists
+          // console.log('For ' + targetRepo.org + '/' + targetRepo.repoName  +
+          // ' latest release is ' + res.data.tag_name );
+          options.ref = res.data.tag_name;
+        }
+        writeOutReadme(options, fileName);
       }
-      writeOutReadme(options, fileName);
-    });
+    );
   }
-} //processReadme
+}; //processReadme
 
 /**
-*  Saves the README file to the specified directory path.
-*  @param {Object} options options passed to [getReadme](http://mikedeboer.github.io/node-github/#api-repos-getReadme):
-*  options.user, options.repo, and options.ref are used.
-*  @param {String} readmeFile Full directory path and file name where the README will be written.
-*/
-writeOutReadme = function(options, readmeFile) {
+ *  Saves the README file to the specified directory path.
+ *  @param {Object} options options passed to
+ *   [getReadme](http://mikedeboer.github.io/node-github/#api-repos-getReadme):
+ * options.owner, options.repo, and options.ref are used.
+ * @param {String} readmeFile Full directory path and file name where the
+ * README will be written.
+ */
+function writeOutReadme(options, readmeFile) {
   github.repos.getReadme(options, function(err, res) {
     if (err) {
-      console.log("ERROR! Cannot get README.")
-      console.log(err);
-
+      console.error('Fail to fetch README from github', err);
     } else {
-      console.log("Writing " + readmeFile );
-      //var file = path + "/" + options.repo + ".md"
+      console.log('Writing ' + readmeFile);
+      //var file = path + '/' + options.repo + '.md'
       var s = new Buffer(res.content, 'base64').toString();
       //var fs = require('fs');
       fs.writeFile(readmeFile, s, function(err) {
-          if(err) {
-            return console.log(err);
-          }
+        if (err) {
+          return console.error(err);
+        }
       });
     }
-  })
+  });
 }
 
 /**
-*  Check whether a file or directory exists.
-* @param {String} path Path to the file or directory.
-* @param {Boolean} isDir True if testing existence of a directory.
-* False or don't supply otherwise.
-*/
-fileOrDirExists = function(path, isDir) {
+ *  Check whether a file or directory exists.
+ * @param {String} path Path to the file or directory.
+ * @param {Boolean} isDir True if testing existence of a directory.
+ * False or don't supply otherwise.
+ */
+exports.fileOrDirExists = function(path, isDir) {
   try {
     if (isDir) {
       return fs.statSync(path).isDirectory();
@@ -75,10 +81,10 @@ fileOrDirExists = function(path, isDir) {
     }
   } catch (e) {
     if (e.code === 'ENOENT') {
-      console.log(path + ": Does not exist...");
+      console.error(path + ': Does not exist.');
       return false;
     } else {
       throw e;
     }
   }
-}
+};

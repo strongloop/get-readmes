@@ -1,19 +1,18 @@
 {
   "name": "getreadmes",
-  "version": "1.1.1",
+  "version": "2.0.0",
   "description": "Get README files from GitHub",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
-    "get-readmes": "get-readmes.js"
+    "get-readmes": "index.js"
   },
   "author": "C. Rand McKinney",
   "license": "MIT",
   "dependencies": {
-    "command-line-args": "^3.0.1",
-    "github": "^2.5.1",
+    "@octokit/rest": "^15.2.6",
     "minimist": "^1.2.0"
   }
 }
